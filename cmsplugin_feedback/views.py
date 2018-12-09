@@ -40,7 +40,7 @@ class FeedbackView(View):
                 },
             }, status=400)
         form.save()
-        form_submited.send(self, message=form.instance, request=request)
+        form_submited.send(self, message=form.instance, request=request, plugin_model=model)
         return JsonResponse({
             'message': unicode(OK),
             'id': form.instance.id,

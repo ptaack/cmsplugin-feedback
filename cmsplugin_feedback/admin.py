@@ -4,7 +4,7 @@ from .models import Message
 
 class MessageAdmin(admin.ModelAdmin):
     model = Message
-    list_display = ('name', 'email', 'text', 'created_at')
+    list_display = ('name', 'email', 'phone', 'text', 'created_at')
     readonly_fields = list_display
     ordering = ('-created_at',)
 

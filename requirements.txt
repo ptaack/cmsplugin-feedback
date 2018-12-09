@@ -1,2 +1,2 @@
-django-cms
-django-simple-captcha>=0.4.1
+django-cms<=3.0.7
+django-simple-captcha==0.4.9

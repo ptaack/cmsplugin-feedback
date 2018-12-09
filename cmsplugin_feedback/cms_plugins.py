@@ -27,8 +27,9 @@ class FeedbackPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context.update({
             'instance': instance,
-            'form': self.get_message_form(),
+            'form': self.get_message_form(form_type=instance.form_type),
         })
         return context
+
 
 plugin_pool.register_plugin(FeedbackPlugin)

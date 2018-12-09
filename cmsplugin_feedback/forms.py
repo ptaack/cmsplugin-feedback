@@ -13,4 +13,10 @@ class FeedbackMessageForm(forms.ModelForm):
 
     class Meta:
         model = Message
-        fields = ('name', 'email', 'text', 'captcha',)
+        fields = ('name', 'email', 'phone', 'text', 'captcha',)
+
+    def __init__(self, *args, **kwargs):
+        form_type = kwargs.pop('form_type')
+        super(FeedbackMessageForm, self).__init__(*args, **kwargs)
+        field = 'email' if form_type == 'P' else 'phone'
+        self.fields.pop(field)
