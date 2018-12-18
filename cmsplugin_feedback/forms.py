@@ -16,7 +16,13 @@ class FeedbackMessageForm(forms.ModelForm):
         fields = ('name', 'email', 'phone', 'text', 'captcha',)
 
     def __init__(self, *args, **kwargs):
-        form_type = kwargs.pop('form_type')
+        form_type = None
+        try:
+            form_type = kwargs.pop('form_type')
+        except KeyError:
+            if 'phone' in args[0]:
+                form_type = 'P'
         super(FeedbackMessageForm, self).__init__(*args, **kwargs)
-        field = 'email' if form_type == 'P' else 'phone'
-        self.fields.pop(field)
+        if form_type:
+            field = 'email' if form_type == 'P' else 'phone'
+            self.fields.pop(field)
