@@ -9,31 +9,31 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Message'
-        db.create_table(u'cmsplugin_feedback_message', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table('cmsplugin_feedback_message', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75)),
             ('text', self.gf('django.db.models.fields.TextField')()),
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
-        db.send_create_signal(u'cmsplugin_feedback', ['Message'])
+        db.send_create_signal('cmsplugin_feedback', ['Message'])
 
         # Adding model 'FeedbackPlugin'
-        db.create_table(u'cmsplugin_feedback_feedbackplugin', (
-            (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
+        db.create_table('cmsplugin_feedback_feedbackplugin', (
+            ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=255)),
-            ('submit', self.gf('django.db.models.fields.CharField')(default=u'Submit', max_length=30)),
+            ('submit', self.gf('django.db.models.fields.CharField')(default='Submit', max_length=30)),
             ('ok_message', self.gf('django.db.models.fields.TextField')(default='Your message was sent. Thank you for feedback!')),
         ))
-        db.send_create_signal(u'cmsplugin_feedback', ['FeedbackPlugin'])
+        db.send_create_signal('cmsplugin_feedback', ['FeedbackPlugin'])
 
 
     def backwards(self, orm):
         # Deleting model 'Message'
-        db.delete_table(u'cmsplugin_feedback_message')
+        db.delete_table('cmsplugin_feedback_message')
 
         # Deleting model 'FeedbackPlugin'
-        db.delete_table(u'cmsplugin_feedback_feedbackplugin')
+        db.delete_table('cmsplugin_feedback_feedbackplugin')
 
 
     models = {
@@ -41,7 +41,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'CMSPlugin'},
             'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
             'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
@@ -55,21 +55,21 @@ class Migration(SchemaMigration):
         'cms.placeholder': {
             'Meta': {'object_name': 'Placeholder'},
             'default_width': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '255', 'db_index': 'True'})
         },
-        u'cmsplugin_feedback.feedbackplugin': {
+        'cmsplugin_feedback.feedbackplugin': {
             'Meta': {'object_name': 'FeedbackPlugin', '_ormbases': ['cms.CMSPlugin']},
-            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'ok_message': ('django.db.models.fields.TextField', [], {'default': "'Your message was sent. Thank you for feedback!'"}),
             'submit': ('django.db.models.fields.CharField', [], {'default': "u'Submit'", 'max_length': '30'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
-        u'cmsplugin_feedback.message': {
+        'cmsplugin_feedback.message': {
             'Meta': {'object_name': 'Message'},
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'text': ('django.db.models.fields.TextField', [], {})
         }

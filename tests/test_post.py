@@ -42,7 +42,7 @@ class FormPostTest(TestCase):
 
         # The overall message error expected
         self.assertIn('message', res)
-        self.assertEqual(res['message'], unicode(VALIDATION_ERROR))
+        self.assertEqual(res['message'], str(VALIDATION_ERROR))
 
         # Django form error should be included
         self.assertIn('errors', res)
@@ -62,7 +62,7 @@ class FormPostTest(TestCase):
 
         # We have only captcha validation failed
         self.assertIn('errors', res)
-        self.assertEqual(res['errors'].keys(), ['captcha'], res['errors'])
+        self.assertEqual(list(res['errors'].keys()), ['captcha'], res['errors'])
 
         # The new captcha sould be suggested
         self.assertIn('captcha', res)

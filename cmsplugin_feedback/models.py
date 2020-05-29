@@ -4,8 +4,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 TYPE_CHOICE = (
-    ('E', _(u'Email')),
-    ('P', _(u'Phone')),
+    ('E', _('Email')),
+    ('P', _('Phone')),
 )
 
 
