@@ -31,8 +31,7 @@ form_submited.connect(notify_managers)
 
 def get_admin_url(instance, request):
     meta = instance._meta
-    model = hasattr('meta', 'model_name') and \
-        meta.model_name or meta.module_name
+    model = meta.model_name
     url_pattern = 'admin:{app}_{model}_change'.format(
         app=meta.app_label, model=model)
     s = get_current_site(request)
