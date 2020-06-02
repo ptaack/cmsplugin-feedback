@@ -12,6 +12,7 @@ class FeedbackPlugin(CMSPluginBase):
     model = Plugin
     name = _('Feedback Plugin')
     render_template = 'cms/plugins/feedback.html'
+    cache = False
 
     @property
     def _message_form(self):
